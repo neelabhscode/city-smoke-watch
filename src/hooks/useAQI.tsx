@@ -4,8 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import { AirPollutionResponse, GeocodingResponse } from '@/utils/aqi';
 import { toast } from "sonner";
 
-// Replace with your own OpenWeatherMap API key or use a placeholder for now
-const API_KEY = "YOUR_OPENWEATHERMAP_API_KEY";
+// Using the provided OpenWeatherMap API key
+const API_KEY = "7f8f91312d5384be468834134937b7e3";
 
 const fetchCityCoordinates = async (cityName: string): Promise<GeocodingResponse | null> => {
   try {
