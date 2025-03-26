@@ -75,17 +75,17 @@ export const getAQIColor = (aqi: number): string => {
 export const getAQIColorClass = (aqi: number): string => {
   switch (aqi) {
     case 1:
-      return 'text-aqi-good';
+      return 'text-green-500';
     case 2:
-      return 'text-aqi-moderate';
+      return 'text-yellow-500';
     case 3:
-      return 'text-aqi-unhealthy';
+      return 'text-orange-500';
     case 4:
-      return 'text-aqi-veryunhealthy';
+      return 'text-red-500';
     case 5:
-      return 'text-aqi-hazardous';
+      return 'text-purple-700';
     default:
-      return 'text-aqi-hazardous';
+      return 'text-purple-900';
   }
 };
 
@@ -93,17 +93,17 @@ export const getAQIColorClass = (aqi: number): string => {
 export const getAQIBgColorClass = (aqi: number): string => {
   switch (aqi) {
     case 1:
-      return 'bg-aqi-good';
+      return 'bg-green-500';
     case 2:
-      return 'bg-aqi-moderate';
+      return 'bg-yellow-500';
     case 3:
-      return 'bg-aqi-unhealthy';
+      return 'bg-orange-500';
     case 4:
-      return 'bg-aqi-veryunhealthy';
+      return 'bg-red-500';
     case 5:
-      return 'bg-aqi-hazardous';
+      return 'bg-purple-700';
     default:
-      return 'bg-aqi-hazardous';
+      return 'bg-purple-900';
   }
 };
 

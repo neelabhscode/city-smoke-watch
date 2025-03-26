@@ -21,7 +21,7 @@ const CitySearch: React.FC<CitySearchProps> = ({ onSearch, isLoading }) => {
 
   return (
     <div className="w-full max-w-md mx-auto mb-8 animate-fade-in">
-      <form onSubmit={handleSubmit} className="search-container flex items-center">
+      <form onSubmit={handleSubmit} className="flex items-center gap-2 p-2 bg-background/80 backdrop-blur-sm border rounded-lg shadow-sm">
         <Input
           ref={inputRef}
           type="text"
