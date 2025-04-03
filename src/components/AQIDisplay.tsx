@@ -9,6 +9,7 @@ import {
   getCigaretteEquivalence
 } from '@/utils/aqi';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 interface AQIDisplayProps {
   pollutionData: AirPollutionResponse | null;
@@ -40,6 +41,24 @@ const AQIDisplay: React.FC<AQIDisplayProps> = ({ pollutionData, city, isLoading 
   const pm25 = aqiData.components.pm2_5;
   const cigaretteEquivalent = getCigaretteEquivalence(pm25);
 
+  // Map AQI value to background color class for the category badge
+  const getBadgeBgClass = (aqi: number): string => {
+    switch (aqi) {
+      case 1:
+        return 'bg-green-500 hover:bg-green-600';
+      case 2:
+        return 'bg-yellow-500 hover:bg-yellow-600';
+      case 3:
+        return 'bg-orange-500 hover:bg-orange-600';
+      case 4:
+        return 'bg-red-500 hover:bg-red-600';
+      case 5:
+        return 'bg-purple-700 hover:bg-purple-800';
+      default:
+        return 'bg-purple-900 hover:bg-purple-950';
+    }
+  };
+
   return (
     <div className="w-full max-w-md mx-auto mb-8 animate-fade-in">
       <Card className="aqi-card">
@@ -49,6 +68,13 @@ const AQIDisplay: React.FC<AQIDisplayProps> = ({ pollutionData, city, isLoading 
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-4 text-center">
+          {/* Air Quality Category Badge */}
+          <div className="mb-4">
+            <Badge className={`${getBadgeBgClass(aqiValue)} text-white py-1 px-3 text-sm`}>
+              {aqiLevel}
+            </Badge>
+          </div>
+
           <div className="flex flex-col items-center justify-center mb-4">
             {/* Display PM2.5 as the primary metric */}
             <div className={`text-7xl font-bold mb-2 ${colorClass}`}>
@@ -57,8 +83,13 @@ const AQIDisplay: React.FC<AQIDisplayProps> = ({ pollutionData, city, isLoading 
             <div className="text-xl font-medium">
               PM2.5 (μg/m³)
             </div>
-            <div className={`text-lg font-medium mt-2 ${colorClass}`}>
-              {aqiLevel}
+            
+            {/* Color indicator block */}
+            <div className="mt-4 flex items-center justify-center">
+              <div className={`w-6 h-6 rounded-md mr-2 ${getBadgeBgClass(aqiValue)}`}></div>
+              <div className={`text-lg font-medium ${colorClass}`}>
+                {aqiLevel}
+              </div>
             </div>
           </div>
           
