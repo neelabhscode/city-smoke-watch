@@ -50,18 +50,22 @@ const AQIDisplay: React.FC<AQIDisplayProps> = ({ pollutionData, city, isLoading 
         </CardHeader>
         <CardContent className="pt-4 text-center">
           <div className="flex flex-col items-center justify-center mb-4">
+            {/* Display PM2.5 as the primary metric */}
             <div className={`text-7xl font-bold mb-2 ${colorClass}`}>
-              {aqiValue}
+              {pm25.toFixed(1)}
             </div>
-            <div className={`text-xl font-medium ${colorClass}`}>
+            <div className="text-xl font-medium">
+              PM2.5 (μg/m³)
+            </div>
+            <div className={`text-lg font-medium mt-2 ${colorClass}`}>
               {aqiLevel}
             </div>
           </div>
           
           <div className="grid grid-cols-2 gap-4 my-6 text-left">
             <div className="flex flex-col">
-              <span className="text-sm text-muted-foreground">PM2.5</span>
-              <span className="text-xl font-medium">{pm25.toFixed(1)} μg/m³</span>
+              <span className="text-sm text-muted-foreground">AQI Index</span>
+              <span className="text-xl font-medium">{aqiValue} / 5</span>
             </div>
             <div className="flex flex-col">
               <span className="text-sm text-muted-foreground">PM10</span>
@@ -77,11 +81,21 @@ const AQIDisplay: React.FC<AQIDisplayProps> = ({ pollutionData, city, isLoading 
             </div>
           </div>
           
+          {/* Cigarette equivalence as text only */}
+          <div className="w-full max-w-md mx-auto mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+            <div className="text-lg font-medium mb-2">
+              Health Impact
+            </div>
+            <div className="text-2xl font-bold mb-2">
+              = {cigaretteEquivalent.toFixed(1)} cigarettes daily
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Breathing this air for 24 hours is equivalent to smoking {cigaretteEquivalent.toFixed(1)} cigarettes.
+            </div>
+          </div>
+          
           <div className="mt-4 text-sm text-muted-foreground text-left">
             <p>{healthImpact}</p>
-            <p className="mt-2">
-              Breathing this air for 24 hours is equivalent to smoking about <span className="font-medium">{cigaretteEquivalent}</span> cigarettes.
-            </p>
           </div>
         </CardContent>
       </Card>

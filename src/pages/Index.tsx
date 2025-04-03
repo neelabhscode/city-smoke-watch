@@ -2,7 +2,6 @@
 import React from 'react';
 import CitySearch from '@/components/CitySearch';
 import AQIDisplay from '@/components/AQIDisplay';
-import CigaretteAnimation from '@/components/CigaretteAnimation';
 import { useAQI } from '@/hooks/useAQI';
 import { Toaster } from "sonner";
 
@@ -33,18 +32,11 @@ const Index = () => {
         <CitySearch onSearch={searchCity} isLoading={isLoading} />
         
         {hasData && (
-          <>
-            <AQIDisplay 
-              pollutionData={pollutionData} 
-              city={selectedCity} 
-              isLoading={isLoading} 
-            />
-            
-            <CigaretteAnimation 
-              aqi={pollutionData.list[0].main.aqi} 
-              pm25={pollutionData.list[0].components.pm2_5} 
-            />
-          </>
+          <AQIDisplay 
+            pollutionData={pollutionData} 
+            city={selectedCity} 
+            isLoading={isLoading} 
+          />
         )}
         
         {!hasData && !isLoading && (
